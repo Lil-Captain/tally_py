@@ -32,6 +32,16 @@ def authenticate():
 def clear_user(exception=None):
     UserContext.clear()
 
+@api_bp.errorhandler(Exception)
+def internal_server_error1(e):
+    return {
+        "code": 400,
+        "success": False,
+        "msg": "失败",
+        "data": e.args[0]
+    }, 400
+
+
 @api_bp.route("/joinRoom", methods=["POST"])
 def join_room():
     api_request = request.get_json(silent=True) or request.form or {}
