@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request
 from pydantic import ValidationError
-from app.models import user_room_relation
 from app.models.room import Room
 from app.models.transfer_detail import TransferDetail
 from app.models.user import User
@@ -13,6 +12,25 @@ from app.services.user_service import UserService
 api_bp = Blueprint("api", __name__)
 user_service = UserService()
 room_service = RoomService()
+
+@api_bp.before_request
+def authenticate():
+    # 获取请求的路径
+    request_path = request.path;
+    # breakpoint()
+    if request_path != "/v1/api/getOpenId" and request_path != "/v1/api/isUserInfo":
+        open_id = request.headers.get("openId", "")
+        if open_id.strip() == "":
+            return {"code":401,"success":False,"message":"Unauthorized","data":None}, 401
+        user = User.query.filter_by(open_id=open_id).first()
+
+        if not user:
+            return {"code":401,"success":False,"message":"Unauthorized","data":None}, 401
+        UserContext.set_user(user)
+
+@api_bp.teardown_request
+def clear_user(exception=None):
+    UserContext.clear()
 
 @api_bp.route("/joinRoom", methods=["POST"])
 def join_room():

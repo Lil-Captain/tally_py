@@ -1,0 +1,56 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.so
+
+# 虚拟环境
+venv/
+env/
+.venv/
+
+# ---- Flask / Werkzeug ----
+instance/
+*.db
+*.sqlite3
+*.sqlite
+
+# ---- Flask-Uploads / Media ----
+uploads/
+media/
+
+# ---- 环境变量文件 ----
+.env
+.env.*
+*.env
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- 操作系统文件 ----
+.DS_Store
+Thumbs.db
+
+# ---- 日志文件 ----
+*.log
+logs/
+
+# ---- 单元测试 ----
+.coverage
+htmlcov/
+pytest_cache/
+
+# ---- 依赖相关 ----
+pip-wheel-metadata/
+pip-log.txt
+
+# ---- 生成的打包文件 ----
+build/
+dist/
+*.egg-info/
