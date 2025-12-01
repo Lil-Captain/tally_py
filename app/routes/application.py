@@ -26,7 +26,7 @@ def users_list():
     
     users = query.order_by(User.id.desc()).paginate(page=page, per_page=10)
     
-    breadcrumb = [('首页', url_for('index')), ('用户管理', None)]
+    breadcrumb = [('首页', url_for('app.index')), ('用户管理', None)]
     search_fields = [
         {"name": "user_name", "label": "用户名"},
         {"name": "alias", "label": "别名"}
