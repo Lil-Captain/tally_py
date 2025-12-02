@@ -105,7 +105,7 @@ class RoomService:
             other_point["userName"] = other_user.user_name
             other_point["userId"] = other_user.id
             other_point_infos.append(other_point)
-        room_detail["otherPointInfoVo"] = other_point_infos
+        room_detail["otherPointInfoVoArr"] = other_point_infos
         room_detail["showGuide"] = False
         room_detail["showCode"] = False
         return room_detail
