@@ -123,6 +123,8 @@ def room_transfer_details():
     data = []
     for transfer_detail in transfer_details:
         json = transfer_detail.to_dict()
+        json["amount"] = int(json["amount"])
+        json["createTime"] = json["createTime"].strftime("%Y年%m月%d天 %H:%M:%S")
         json["payerUser"] = User.query.get(json["payerUserId"]).to_dict()
         json["payeeUser"] = User.query.get(json["payeeUserId"]).to_dict()
         json.pop("payerUserId")

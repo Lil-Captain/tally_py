@@ -2,7 +2,6 @@ from datetime import datetime
 from decimal import Decimal
 import logging
 from app.extensions import db
-from app.models import user_room_relation
 from app.models.room import Room
 from app.models.transfer_detail import TransferDetail
 from app.models.user import User
