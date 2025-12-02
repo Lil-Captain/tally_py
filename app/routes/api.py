@@ -72,7 +72,7 @@ def get_room_info():
     user_room_relation = UserRoomRelation.query.filter_by(user_id=UserContext.get_user().id, status=0).first()
 
     if user_room_relation: 
-        return api_respose(200, Room.query.filter_by(owner_id=UserContext.get_user().id, room_status=0).first().to_dict())
+        return api_respose(200, Room.query.get(user_room_relation.room_id).to_dict())
     else:
         return api_respose(200, None)
 
