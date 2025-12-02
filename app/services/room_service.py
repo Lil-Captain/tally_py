@@ -80,7 +80,7 @@ class RoomService:
         room_detail["roomCode"] = ""
         # 用户收支情况总览
         my_point = {}
-        my_point["userPoint"] = amount
+        my_point["userPoint"] = int(amount)
         my_point["userId"] = user.id
         my_point["userName"] = user.user_name
         my_point["userAvatar"] = user.avatar
@@ -123,4 +123,4 @@ class RoomService:
         payer_amount = sum( transfer_detail.amount for transfer_detail in TransferDetail.query.filter_by(room_id=room_id, payer_user_id=user_id).all() if isinstance(transfer_detail.amount, (int, float, Decimal)))
         payee_amount = sum( transfer_detail.amount for transfer_detail in TransferDetail.query.filter_by(room_id=room_id, payee_user_id=user_id).all() if isinstance(transfer_detail.amount, (int, float, Decimal)))
         amount = payee_amount - payer_amount
-        return amount
+        return int(amount)
