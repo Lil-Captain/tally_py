@@ -32,17 +32,13 @@ class RoomService:
         if room is None:
             raise Exception("房间不存在")
 
-        payer_user = User.query.get(transfer_detail_req.payerUserId)
-        if payer_user is None:
-            raise Exception("付款人用户不存在")
-
         payee_user = User.query.get(transfer_detail_req.payeeUserId)
         if payee_user is None:
             raise Exception("收款人用户不存在")
         
         transfer_detail = TransferDetail(
             room_id = transfer_detail_req.roomId,
-            payer_user_id = transfer_detail_req.payerUserId,
+            payer_user_id = UserContext.get_user().id,
             payee_user_id = transfer_detail_req.payeeUserId,
             amount = transfer_detail_req.amount
         )
